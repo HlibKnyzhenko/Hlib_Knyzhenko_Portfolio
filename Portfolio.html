@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hlib Knizhenko | Portfolio</title>
+    <style>
+        :root {
+            --bg: #070b14;
+            --panel: #0e1628;
+            --panel-soft: #111d34;
+            --text: #e7eefc;
+            --muted: #9fb0c8;
+            --accent: #4cc9f0;
+            --accent-dark: #37a8cc;
+            --line: #1b2a46;
+            --card-shadow: 0 14px 34px rgba(0, 0, 0, 0.4);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Space Grotesk", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at 10% 10%, rgba(76, 201, 240, 0.2) 0, transparent 40%),
+                radial-gradient(circle at 90% 10%, rgba(96, 80, 220, 0.2) 0, transparent 35%),
+                var(--bg);
+            line-height: 1.6;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            position: relative;
+        }
+
+        body::before,
+        body::after {
+            content: "";
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(40px);
+            z-index: -1;
+            animation: floatGlow 12s ease-in-out infinite;
+        }
+
+        body::before {
+            width: 260px;
+            height: 260px;
+            background: rgba(76, 201, 240, 0.16);
+            top: 12%;
+            left: -60px;
+        }
+
+        body::after {
+            width: 320px;
+            height: 320px;
+            background: rgba(160, 118, 255, 0.12);
+            bottom: 8%;
+            right: -90px;
+            animation-delay: -6s;
+        }
+
+        .container {
+            width: min(1100px, 92%);
+            margin: 0 auto;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(7, 11, 20, 0.72);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0;
+        }
+
+        .brand {
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+        }
+
+        .menu {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: var(--muted);
+            font-weight: 600;
+            font-size: 0.92rem;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .menu a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 100%;
+            height: 2px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, var(--accent), #76d6ff);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.35s ease;
+        }
+
+        .menu a:hover,
+        .menu a:focus-visible {
+            color: var(--accent);
+        }
+
+        .menu a:hover::after,
+        .menu a:focus-visible::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .hero {
+            padding: 72px 0 36px;
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 24px;
+            align-items: stretch;
+        }
+
+        .hero-main,
+        .hero-side {
+            background: linear-gradient(170deg, var(--panel), var(--panel-soft));
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        .hero-main {
+            padding: 32px;
+            animation: fadeUp 0.85s ease both;
+        }
+
+        .hero-main h1 {
+            margin: 0 0 8px;
+            font-size: clamp(2rem, 4vw, 3rem);
+            line-height: 1.1;
+        }
+
+        .hero-main p {
+            margin: 0 0 12px;
+            color: var(--muted);
+            font-size: 1.05rem;
+        }
+
+        .tag-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .tag {
+            padding: 7px 12px;
+            border-radius: 999px;
+            background: rgba(76, 201, 240, 0.12);
+            border: 1px solid rgba(76, 201, 240, 0.4);
+            color: #9adcf1;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: transform 0.28s ease, background 0.28s ease;
+        }
+
+        .tag:hover {
+            transform: translateY(-2px);
+            background: rgba(76, 201, 240, 0.2);
+        }
+
+        .hero-side {
+            padding: 24px;
+            display: grid;
+            gap: 10px;
+            align-content: center;
+            animation: fadeUp 0.85s ease 0.14s both;
+        }
+
+        .contact-item {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            border-bottom: 1px dashed var(--line);
+            padding: 8px 0;
+        }
+
+        .contact-item span:first-child {
+            color: var(--muted);
+        }
+
+        section {
+            padding: 14px 0 34px;
+        }
+
+        .section-title {
+            margin: 0 0 14px;
+            font-size: 1.5rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .card {
+            background: linear-gradient(180deg, #0f1a30, #0d172b);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(76, 201, 240, 0.6);
+            box-shadow: 0 18px 34px rgba(0, 0, 0, 0.45);
+        }
+
+        .card h3 {
+            margin: 0 0 8px;
+            font-size: 1.04rem;
+        }
+
+        .card p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        ul.clean {
+            margin: 0;
+            padding-left: 18px;
+        }
+
+        ul.clean li {
+            margin-bottom: 8px;
+            color: var(--muted);
+        }
+
+        a.link {
+            color: #7fdaf9;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color 0.25s ease;
+        }
+
+        a.link:hover {
+            color: #b5ebff;
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            padding: 18px 0 30px;
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px) scale(0.98);
+            transition: opacity 0.75s ease, transform 0.75s ease;
+            transition-delay: var(--reveal-delay, 0ms);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes floatGlow {
+            0%,
+            100% {
+                transform: translateY(0) translateX(0);
+            }
+            50% {
+                transform: translateY(-15px) translateX(10px);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+
+            html {
+                scroll-behavior: auto;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container nav">
+            <div class="brand">Hlib Knizhenko</div>
+            <nav class="menu">
+                <a href="#education">Education</a>
+                <a href="#experience">Experience</a>
+                <a href="#activities">Activities</a>
+                <a href="#projects">Projects</a>
+                <a href="#awards">Awards</a>
+                <a href="#skills">Skills</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <article class="hero-main">
+                <h1>Hlib Knizhenko</h1>
+                <p>High School Student from Ukraine building educational projects and custom websites.</p>
+                <div class="tag-row">
+                    <span class="tag">Future Graduate 2026</span>
+                    <span class="tag">Founder of S.P.A.R.K.</span>
+                    <span class="tag">Freelance Web Developer</span>
+                </div>
+            </article>
+            <aside class="hero-side">
+                <div class="contact-item">
+                    <span>Location</span>
+                    <strong>Ukraine</strong>
+                </div>
+                <div class="contact-item">
+                    <span>Email</span>
+                    <strong>likeforge1@gmail.com</strong>
+                </div>
+                <div class="contact-item">
+                    <span>Phone</span>
+                    <strong>+380634301525</strong>
+                </div>
+                <div class="contact-item">
+                    <span>GitHub</span>
+                    <a class="link" href="https://github.com/HlibKnyzhenko" target="_blank" rel="noopener noreferrer">HlibKnyzhenko</a>
+                </div>
+            </aside>
+        </section>
+
+        <section id="education">
+            <h2 class="section-title">Education</h2>
+            <div class="card">
+                <h3>Current School, Ukraine</h3>
+                <p>High School Student</p>
+                <p><strong>Expected Graduation:</strong> 2026</p>
+                <p><strong>Approximate GPA:</strong> C-B Range</p>
+            </div>
+        </section>
+
+        <section id="experience">
+            <h2 class="section-title">Work Experience</h2>
+            <div class="grid">
+                <article class="card">
+                    <h3>Instructor, SUP / Kayaking Club "SUPPORT"</h3>
+                    <p>Taught kayaking and SUP skills, ensured safety, and guided beginners.</p>
+                </article>
+                <article class="card">
+                    <h3>Warehouse Worker</h3>
+                    <p>Assisted with loading, unloading, and organizing shipments.</p>
+                </article>
+                <article class="card">
+                    <h3>Freelance Web Developer</h3>
+                    <p>Created custom websites for clients according to their needs.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="activities">
+            <h2 class="section-title">Extracurricular Activities & Volunteer Experience</h2>
+            <div class="grid">
+                <article class="card">
+                    <h3>Boxing</h3>
+                    <p>Training for over a year; developing discipline, endurance, and self-control.</p>
+                </article>
+                <article class="card">
+                    <h3>School Volunteer Programs (Supporting Military)</h3>
+                    <p>Organized and sent food, hygiene items, and other supplies in large quantities.</p>
+                </article>
+                <article class="card">
+                    <h3>Club 4 Paws</h3>
+                    <p>Delivered food and wet food for dogs and cats; promoted animal welfare.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2 class="section-title">Skills & Projects</h2>
+            <div class="grid">
+                <article class="card">
+                    <h3>Leadership and Teamwork</h3>
+                    <p>Strong collaboration, responsibility, and organization skills.</p>
+                </article>
+                <article class="card">
+                    <h3>Educational Telegram Channel</h3>
+                    <p>Shared resources for learning English, US college applications, and visa guidance.</p>
+                </article>
+                <article class="card">
+                    <h3>Founder, S.P.A.R.K. Academy</h3>
+                    <p>Created a free online educational platform for students and teachers.</p>
+                    <ul class="clean">
+                        <li>8 students, 1 teacher</li>
+                        <li>Developed curriculum and platform structure</li>
+                        <li>Launched certificate-based programs to build learner portfolios</li>
+                    </ul>
+                </article>
+                <article class="card">
+                    <h3>Personal Projects (S.P.A.R.K.)</h3>
+                    <p>Developed my own mobile app and desktop application for learning and productivity.</p>
+                </article>
+                <article class="card">
+                    <h3>Owner of S.P.A.R.K. Speaking Club</h3>
+                    <p>Built and managed a speaking club with 7 participants.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="awards">
+            <h2 class="section-title">Awards & Achievements</h2>
+            <div class="card">
+                <h3>Winner, XXVI All-Ukrainian Online Olympiad "Na Urok" (English Language)</h3>
+                <p><strong>Diploma:</strong> No. O-21584080</p>
+                <p><strong>Date:</strong> 17.11.2025</p>
+                <p>Recognized for outstanding performance in English at a national-level competition.</p>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2 class="section-title">Programming Languages</h2>
+            <div class="grid">
+                <article class="card">
+                    <h3>Python</h3>
+                    <p>Studying since 2023.</p>
+                </article>
+                <article class="card">
+                    <h3>HTML, CSS, JavaScript</h3>
+                    <p>Studying since 2024-2025.</p>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">Portfolio of Hlib Knizhenko</div>
+    </footer>
+    <script>
+        const revealElements = document.querySelectorAll("section:not(.hero), .card");
+        revealElements.forEach((el, index) => {
+            el.classList.add("reveal");
+            el.style.setProperty("--reveal-delay", `${(index % 4) * 90}ms`);
+        });
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.16 }
+        );
+
+        revealElements.forEach((el) => observer.observe(el));
+    </script>
+</body>
+</html>
