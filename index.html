@@ -3,299 +3,793 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hlib Knyzhenko | Portfolio</title>
+    <title>Hlib Knyzhenko | Portfolio Orbit</title>
     <style>
         :root {
-            --bg: #070b14;
-            --panel: #0e1628;
-            --panel-soft: #111d34;
-            --text: #e7eefc;
-            --muted: #9fb0c8;
-            --accent: #4cc9f0;
-            --accent-dark: #37a8cc;
-            --line: #1b2a46;
-            --card-shadow: 0 14px 34px rgba(0, 0, 0, 0.4);
+            color-scheme: dark;
+            --bg: #030303;
+            --bg-deep: #07080d;
+            --panel: rgba(14, 17, 25, 0.72);
+            --panel-strong: rgba(10, 13, 20, 0.96);
+            --panel-soft: rgba(17, 24, 36, 0.94);
+            --text: #f6f1e8;
+            --muted: #b7b4aa;
+            --accent: #72d8ff;
+            --accent-strong: #18b8ff;
+            --accent-soft: rgba(114, 216, 255, 0.16);
+            --line: rgba(255, 255, 255, 0.12);
+            --shadow: 0 28px 80px rgba(0, 0, 0, 0.42);
+            --modal-backdrop: rgba(0, 0, 0, 0.72);
+            --planet-ocean: #0d4f7f;
+            --planet-ocean-deep: #061b30;
+            --planet-ocean-glow: #2b86bb;
+            --planet-land-light: #9af1ab;
+            --planet-land: #5ed08d;
+            --planet-land-deep: #2b7f4f;
+            --planet-cloud: rgba(255, 255, 255, 0.75);
+            --planet-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 960 260'%3E%3Cg fill='white'%3E%3Cellipse cx='110' cy='84' rx='58' ry='34' transform='rotate(-14 110 84)'/%3E%3Cellipse cx='168' cy='68' rx='35' ry='20' transform='rotate(14 168 68)'/%3E%3Cellipse cx='181' cy='106' rx='39' ry='24' transform='rotate(10 181 106)'/%3E%3Cellipse cx='129' cy='124' rx='40' ry='18' transform='rotate(-18 129 124)'/%3E%3Cellipse cx='96' cy='110' rx='24' ry='18'/%3E%3Cellipse cx='154' cy='153' rx='20' ry='12' transform='rotate(-4 154 153)'/%3E%3Cellipse cx='198' cy='174' rx='30' ry='18' transform='rotate(12 198 174)'/%3E%3Cellipse cx='219' cy='212' rx='22' ry='38' transform='rotate(18 219 212)'/%3E%3Cellipse cx='230' cy='248' rx='11' ry='16' transform='rotate(16 230 248)'/%3E%3Cellipse cx='251' cy='46' rx='24' ry='18' transform='rotate(-18 251 46)'/%3E%3Cellipse cx='404' cy='70' rx='9' ry='12' transform='rotate(-12 404 70)'/%3E%3Cellipse cx='428' cy='82' rx='31' ry='21' transform='rotate(12 428 82)'/%3E%3Cellipse cx='462' cy='88' rx='26' ry='18' transform='rotate(-8 462 88)'/%3E%3Cellipse cx='492' cy='128' rx='33' ry='55' transform='rotate(8 492 128)'/%3E%3Cellipse cx='475' cy='188' rx='18' ry='30' transform='rotate(16 475 188)'/%3E%3Cellipse cx='533' cy='118' rx='17' ry='15'/%3E%3Cellipse cx='536' cy='184' rx='8' ry='18' transform='rotate(18 536 184)'/%3E%3Cellipse cx='592' cy='78' rx='61' ry='28' transform='rotate(-5 592 78)'/%3E%3Cellipse cx='660' cy='86' rx='78' ry='36' transform='rotate(5 660 86)'/%3E%3Cellipse cx='724' cy='96' rx='46' ry='23' transform='rotate(-8 724 96)'/%3E%3Cellipse cx='636' cy='132' rx='48' ry='25' transform='rotate(18 636 132)'/%3E%3Cellipse cx='698' cy='138' rx='43' ry='24' transform='rotate(-6 698 138)'/%3E%3Cellipse cx='624' cy='158' rx='18' ry='30' transform='rotate(24 624 158)'/%3E%3Cellipse cx='707' cy='169' rx='23' ry='15' transform='rotate(-8 707 169)'/%3E%3Cellipse cx='750' cy='118' rx='9' ry='15' transform='rotate(16 750 118)'/%3E%3Cellipse cx='790' cy='198' rx='36' ry='23' transform='rotate(8 790 198)'/%3E%3Cellipse cx='826' cy='214' rx='19' ry='12' transform='rotate(-10 826 214)'/%3E%3C/g%3E%3C/svg%3E");
+            --theme-pill-bg: rgba(255, 255, 255, 0.06);
+            --theme-pill-border: rgba(255, 255, 255, 0.16);
+            --orbit-radius: clamp(170px, 28vw, 260px);
+        }
+
+        body[data-theme="light"] {
+            color-scheme: light;
+            --bg: #f3ebde;
+            --bg-deep: #eef3f8;
+            --panel: rgba(255, 255, 255, 0.72);
+            --panel-strong: rgba(255, 255, 255, 0.97);
+            --panel-soft: rgba(247, 249, 252, 0.96);
+            --text: #1a1f29;
+            --muted: #62666f;
+            --accent: #0f78b8;
+            --accent-strong: #005f96;
+            --accent-soft: rgba(15, 120, 184, 0.12);
+            --line: rgba(26, 31, 41, 0.14);
+            --shadow: 0 24px 70px rgba(53, 60, 74, 0.16);
+            --modal-backdrop: rgba(23, 27, 35, 0.46);
+            --planet-ocean: #1b82c0;
+            --planet-ocean-deep: #0b3658;
+            --planet-ocean-glow: #74c7f1;
+            --planet-land-light: #8ee18d;
+            --planet-land: #4fb56f;
+            --planet-land-deep: #31724d;
+            --planet-cloud: rgba(255, 255, 255, 0.7);
+            --theme-pill-bg: rgba(255, 255, 255, 0.74);
+            --theme-pill-border: rgba(14, 22, 36, 0.14);
         }
 
         * {
             box-sizing: border-box;
         }
 
-        body {
-            margin: 0;
-            font-family: "Space Grotesk", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-            color: var(--text);
-            background:
-                radial-gradient(circle at 10% 10%, rgba(76, 201, 240, 0.2) 0, transparent 40%),
-                radial-gradient(circle at 90% 10%, rgba(96, 80, 220, 0.2) 0, transparent 35%),
-                var(--bg);
-            line-height: 1.6;
-            overflow-x: hidden;
+        html {
             scroll-behavior: smooth;
-            position: relative;
         }
 
-        body::before,
-        body::after {
-            content: "";
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(40px);
-            z-index: -1;
-            animation: floatGlow 12s ease-in-out infinite;
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Avenir Next", "Trebuchet MS", "Segoe UI", sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at top, rgba(47, 133, 196, 0.18), transparent 32%),
+                radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.08), transparent 20%),
+                linear-gradient(180deg, #020202 0%, var(--bg) 28%, var(--bg-deep) 100%);
+            overflow-x: hidden;
+            transition: background 0.35s ease, color 0.35s ease;
+        }
+
+        body[data-theme="light"] {
+            background:
+                radial-gradient(circle at top, rgba(58, 146, 197, 0.18), transparent 32%),
+                radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.5), transparent 24%),
+                linear-gradient(180deg, #fffefb 0%, var(--bg) 28%, var(--bg-deep) 100%);
         }
 
         body::before {
-            width: 260px;
-            height: 260px;
-            background: rgba(76, 201, 240, 0.16);
-            top: 12%;
-            left: -60px;
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background-image:
+                radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.18) 0 1px, transparent 1.5px),
+                radial-gradient(circle at 70% 60%, rgba(255, 255, 255, 0.12) 0 1px, transparent 1.6px),
+                radial-gradient(circle at 45% 80%, rgba(255, 255, 255, 0.14) 0 1px, transparent 1.8px),
+                radial-gradient(circle at 88% 18%, rgba(255, 255, 255, 0.16) 0 1px, transparent 1.7px);
+            background-size: 340px 340px, 430px 430px, 520px 520px, 610px 610px;
+            opacity: 0.46;
+            animation: driftStars 18s linear infinite;
+        }
+
+        body[data-theme="light"]::before {
+            opacity: 0.18;
         }
 
         body::after {
-            width: 320px;
-            height: 320px;
-            background: rgba(160, 118, 255, 0.12);
-            bottom: 8%;
-            right: -90px;
-            animation-delay: -6s;
+            content: "";
+            position: fixed;
+            inset: auto -12% 5% auto;
+            width: min(34vw, 420px);
+            height: min(34vw, 420px);
+            pointer-events: none;
+            background: radial-gradient(circle, rgba(114, 216, 255, 0.18) 0, rgba(114, 216, 255, 0.03) 56%, transparent 68%);
+            filter: blur(12px);
         }
 
-        .container {
-            width: min(1100px, 92%);
+        body.modal-open {
+            overflow: hidden;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        button {
+            font: inherit;
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        .site-shell {
+            position: relative;
+            min-height: 100vh;
+            min-height: 100dvh;
+            padding: 24px clamp(18px, 4vw, 44px) 34px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .topbar {
+            width: min(1160px, 100%);
             margin: 0 auto;
-        }
-
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(10px);
-            background: rgba(7, 11, 20, 0.72);
-            border-bottom: 1px solid var(--line);
-        }
-
-        .nav {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            padding: 14px 0;
-        }
-
-        .brand {
-            font-size: 1.1rem;
-            font-weight: 700;
-            letter-spacing: 0.3px;
-        }
-
-        .menu {
-            display: flex;
-            gap: 16px;
+            align-items: flex-start;
+            gap: 18px;
             flex-wrap: wrap;
         }
 
-        .menu a {
-            text-decoration: none;
+        .brand-block {
+            display: grid;
+            gap: 4px;
+        }
+
+        .brand-kicker {
+            margin: 0;
             color: var(--muted);
-            font-weight: 600;
-            font-size: 0.92rem;
-            position: relative;
-            transition: color 0.3s ease;
+            font-size: 0.72rem;
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
         }
 
-        .menu a::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: -4px;
-            width: 100%;
-            height: 2px;
+        .brand-name {
+            margin: 0;
+            font-size: clamp(1.3rem, 2.5vw, 1.95rem);
+            font-weight: 800;
+            letter-spacing: 0.04em;
+        }
+
+        .theme-toggle {
+            border: 1px solid var(--theme-pill-border);
+            background: var(--theme-pill-bg);
+            color: var(--text);
             border-radius: 999px;
-            background: linear-gradient(90deg, var(--accent), #76d6ff);
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 0.35s ease;
+            padding: 12px 18px;
+            cursor: pointer;
+            transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+            backdrop-filter: blur(18px);
+            box-shadow: var(--shadow);
         }
 
-        .menu a:hover,
-        .menu a:focus-visible {
-            color: var(--accent);
-        }
-
-        .menu a:hover::after,
-        .menu a:focus-visible::after {
-            transform: scaleX(1);
-            transform-origin: left;
+        .theme-toggle:hover,
+        .theme-toggle:focus-visible {
+            transform: translateY(-2px);
+            border-color: rgba(114, 216, 255, 0.42);
+            outline: none;
         }
 
         .hero {
-            padding: 72px 0 36px;
-            display: grid;
-            grid-template-columns: 1.4fr 1fr;
-            gap: 24px;
-            align-items: stretch;
+            width: min(1120px, 100%);
+            margin: 0 auto;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            gap: 22px;
+            padding: 28px 0 12px;
         }
 
-        .hero-main,
-        .hero-side {
-            background: linear-gradient(170deg, var(--panel), var(--panel-soft));
-            border: 1px solid var(--line);
-            border-radius: 18px;
-            box-shadow: var(--card-shadow);
-            transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
-        }
-
-        .hero-main {
-            padding: 32px;
-            animation: fadeUp 0.85s ease both;
-        }
-
-        .hero-main h1 {
-            margin: 0 0 8px;
-            font-size: clamp(2rem, 4vw, 3rem);
-            line-height: 1.1;
-        }
-
-        .hero-main p {
-            margin: 0 0 12px;
+        .eyebrow {
+            margin: 0;
             color: var(--muted);
-            font-size: 1.05rem;
+            font-size: 0.78rem;
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
+            animation: fadeRise 0.8s ease both;
         }
 
-        .tag-row {
+        .hero h1 {
+            margin: 0;
+            max-width: 12ch;
+            font-size: clamp(2.9rem, 7vw, 5.8rem);
+            line-height: 0.94;
+            font-weight: 800;
+            animation: fadeRise 0.9s ease 0.08s both;
+        }
+
+        .hero-copy {
+            margin: 0;
+            max-width: 820px;
+            color: var(--muted);
+            font-size: clamp(1rem, 2vw, 1.18rem);
+            animation: fadeRise 0.9s ease 0.16s both;
+        }
+
+        .status-pills,
+        .contact-strip {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 18px;
+            gap: 12px;
+            justify-content: center;
+            animation: fadeRise 0.9s ease 0.24s both;
         }
 
-        .tag {
-            padding: 7px 12px;
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            padding: 10px 16px;
             border-radius: 999px;
-            background: rgba(76, 201, 240, 0.12);
-            border: 1px solid rgba(76, 201, 240, 0.4);
-            color: #9adcf1;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: transform 0.28s ease, background 0.28s ease;
-        }
-
-        a.tag {
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
             text-decoration: none;
-            display: inline-block;
+            text-align: center;
+            justify-content: center;
+            overflow-wrap: anywhere;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 18px 32px rgba(0, 0, 0, 0.18);
+            transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
         }
 
-        .tag:hover {
+        body[data-theme="light"] .pill {
+            background: rgba(255, 255, 255, 0.64);
+        }
+
+        .pill:hover,
+        .pill:focus-visible {
             transform: translateY(-2px);
-            background: rgba(76, 201, 240, 0.2);
+            border-color: rgba(114, 216, 255, 0.45);
+            background: rgba(114, 216, 255, 0.08);
+            outline: none;
         }
 
-        .hero-side {
-            padding: 24px;
+        .pill strong {
+            font-size: 0.85rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .orbit-note,
+        .footer-copy {
+            margin: 0;
+            color: var(--muted);
+            font-size: 0.92rem;
+            animation: fadeRise 0.9s ease 0.3s both;
+        }
+
+        .orbit-stage {
+            position: relative;
+            width: min(86vw, 700px);
+            height: min(86vw, 700px);
             display: grid;
-            gap: 10px;
-            align-content: center;
-            animation: fadeUp 0.85s ease 0.14s both;
+            place-items: center;
+            margin: 10px auto 0;
+            animation: fadeRise 1s ease 0.18s both;
         }
 
-        .contact-item {
+        .orbit-stage::before {
+            content: "";
+            position: absolute;
+            width: 68%;
+            height: 68%;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(114, 216, 255, 0.14), transparent 70%);
+            filter: blur(28px);
+            opacity: 0.9;
+        }
+
+        .orbit-ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            pointer-events: none;
+            opacity: 0.9;
+        }
+
+        .orbit-ring--one {
+            width: 60%;
+            height: 60%;
+            animation: rotateRing 18s linear infinite;
+        }
+
+        .orbit-ring--two {
+            width: 78%;
+            height: 78%;
+            border-style: dashed;
+            animation: rotateRingReverse 24s linear infinite;
+        }
+
+        .orbit-ring--three {
+            width: 94%;
+            height: 94%;
+            animation: rotateRing 30s linear infinite;
+        }
+
+        .globe-trigger {
+            position: relative;
+            z-index: 2;
+            width: clamp(230px, 30vw, 330px);
+            aspect-ratio: 1;
+            border: 0;
+            border-radius: 50%;
+            background: transparent;
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+            padding: 0;
+            transition: transform 0.35s ease;
+        }
+
+        .globe-trigger:hover,
+        .globe-trigger:focus-visible {
+            transform: scale(1.03);
+            outline: none;
+        }
+
+        .globe-shell {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            overflow: hidden;
+            display: grid;
+            place-items: center;
+            isolation: isolate;
+            background:
+                radial-gradient(circle at 34% 28%, rgba(198, 244, 255, 0.34), transparent 18%),
+                radial-gradient(circle at 68% 62%, rgba(8, 24, 46, 0.2), transparent 34%),
+                linear-gradient(180deg, var(--planet-ocean-glow) 0%, var(--planet-ocean) 42%, #0a2741 64%, var(--planet-ocean-deep) 100%);
+            box-shadow:
+                inset -38px -30px 60px rgba(0, 0, 0, 0.48),
+                inset 18px 12px 30px rgba(151, 228, 255, 0.22),
+                0 0 90px rgba(24, 184, 255, 0.22),
+                0 24px 80px rgba(0, 0, 0, 0.32);
+            animation: floatPlanet 8s ease-in-out infinite;
+        }
+
+        .globe-shell::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background:
+                radial-gradient(circle at 30% 26%, rgba(255, 255, 255, 0.38), transparent 16%),
+                radial-gradient(circle at 50% 50%, transparent 62%, rgba(130, 223, 255, 0.15) 74%, transparent 77%),
+                linear-gradient(110deg, rgba(255, 255, 255, 0.2) 0 12%, transparent 18% 100%);
+            mix-blend-mode: screen;
+            z-index: 4;
+            pointer-events: none;
+        }
+
+        .globe-shell::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background:
+                radial-gradient(circle at 76% 78%, rgba(6, 14, 24, 0.84), transparent 34%),
+                linear-gradient(90deg, transparent 0 52%, rgba(2, 5, 10, 0.34) 80%, rgba(2, 5, 10, 0.6) 100%);
+            z-index: 4;
+            pointer-events: none;
+        }
+
+        .globe-map {
+            position: absolute;
+            top: 15%;
+            left: -102%;
+            width: 304%;
+            height: 70%;
+            border-radius: 999px;
+            background: linear-gradient(180deg, var(--planet-land-light) 0%, var(--planet-land) 54%, var(--planet-land-deep) 100%);
+            -webkit-mask-image: var(--planet-mask);
+            mask-image: var(--planet-mask);
+            -webkit-mask-repeat: repeat-x;
+            mask-repeat: repeat-x;
+            -webkit-mask-size: 34% 100%;
+            mask-size: 34% 100%;
+            -webkit-mask-position: 0 50%;
+            mask-position: 0 50%;
+            opacity: 0.98;
+            filter: drop-shadow(0 0 6px rgba(13, 33, 15, 0.34));
+            will-change: transform;
+            animation: spinContinents 22s linear infinite;
+            z-index: 1;
+        }
+
+        .globe-map::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.28), transparent 38%, rgba(10, 23, 12, 0.3) 100%);
+            -webkit-mask-image: var(--planet-mask);
+            mask-image: var(--planet-mask);
+            -webkit-mask-repeat: repeat-x;
+            mask-repeat: repeat-x;
+            -webkit-mask-size: 34% 100%;
+            mask-size: 34% 100%;
+            -webkit-mask-position: 1.5% 50%;
+            mask-position: 1.5% 50%;
+            opacity: 0.72;
+        }
+
+        .globe-clouds {
+            position: absolute;
+            top: 17%;
+            left: -104%;
+            width: 308%;
+            height: 56%;
+            border-radius: 999px;
+            background:
+                radial-gradient(ellipse at 14% 34%, var(--planet-cloud) 0 7%, transparent 8%),
+                radial-gradient(ellipse at 20% 58%, rgba(255, 255, 255, 0.56) 0 6%, transparent 7%),
+                radial-gradient(ellipse at 34% 28%, rgba(255, 255, 255, 0.72) 0 7%, transparent 8%),
+                radial-gradient(ellipse at 44% 52%, rgba(255, 255, 255, 0.62) 0 6%, transparent 7%),
+                radial-gradient(ellipse at 57% 34%, rgba(255, 255, 255, 0.76) 0 7%, transparent 8%),
+                radial-gradient(ellipse at 66% 58%, rgba(255, 255, 255, 0.58) 0 6%, transparent 7%),
+                radial-gradient(ellipse at 78% 38%, rgba(255, 255, 255, 0.72) 0 7%, transparent 8%),
+                radial-gradient(ellipse at 88% 62%, rgba(255, 255, 255, 0.52) 0 6%, transparent 7%);
+            background-repeat: repeat-x;
+            background-size: 34% 100%;
+            opacity: 0.34;
+            filter: blur(5px);
+            will-change: transform;
+            animation: spinClouds 30s linear infinite;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .globe-grid {
+            position: absolute;
+            inset: 7%;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+            z-index: 2;
+        }
+
+        .globe-grid::before,
+        .globe-grid::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .globe-grid::before {
+            transform: scaleX(0.66);
+        }
+
+        .globe-grid::after {
+            transform: scaleY(0.62);
+        }
+
+        .globe-line {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.05);
+            z-index: 2;
+        }
+
+        .globe-line--horizontal {
+            inset: 50% 12% auto;
+            height: 1px;
+            transform: translateY(-50%);
+        }
+
+        .globe-line--vertical {
+            inset: 12% auto 12% 50%;
+            width: 1px;
+            transform: translateX(-50%);
+        }
+
+        .globe-caption {
+            position: absolute;
+            bottom: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            width: max-content;
+            padding: 8px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(6, 10, 15, 0.58);
+            color: #eefbff;
+            font-size: 0.9rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            backdrop-filter: blur(10px);
+        }
+
+        body[data-theme="light"] .globe-caption {
+            background: rgba(255, 255, 255, 0.76);
+            color: #18314d;
+        }
+
+        .orbit-menu {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .orbit-node {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 142px;
+            padding: 12px 18px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            background: rgba(10, 14, 22, 0.72);
+            color: var(--text);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            font-size: 0.78rem;
+            cursor: pointer;
+            box-shadow: 0 16px 38px rgba(0, 0, 0, 0.26);
+            opacity: 0;
+            pointer-events: none;
+            transform: translate(-50%, -50%) scale(0.58);
+            transition:
+                opacity 0.28s ease,
+                transform 0.45s cubic-bezier(0.2, 0.9, 0.2, 1),
+                border-color 0.25s ease,
+                background 0.25s ease;
+        }
+
+        body[data-theme="light"] .orbit-node {
+            background: rgba(255, 255, 255, 0.88);
+        }
+
+        .orbit-node:hover,
+        .orbit-node:focus-visible {
+            border-color: rgba(114, 216, 255, 0.65);
+            background: rgba(114, 216, 255, 0.16);
+            outline: none;
+        }
+
+        .orbit-stage.active .orbit-menu {
+            pointer-events: auto;
+        }
+
+        .orbit-stage.active .orbit-node {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translate(-50%, -50%) rotate(var(--angle)) translateX(var(--orbit-radius)) rotate(calc(var(--angle) * -1)) scale(1);
+            transition-delay: var(--delay, 0ms);
+        }
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            z-index: 30;
+            display: grid;
+            place-items: center;
+            padding: 24px;
+            background: var(--modal-backdrop);
+            backdrop-filter: blur(18px);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.24s ease, visibility 0.24s ease;
+        }
+
+        .modal.is-visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-card {
+            width: min(960px, 100%);
+            max-height: min(88vh, 900px);
+            max-height: min(88dvh, 900px);
+            overflow: auto;
+            border-radius: 32px;
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, var(--panel-strong), var(--panel-soft));
+            box-shadow: var(--shadow);
+            padding: 28px clamp(20px, 4vw, 38px) 30px;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior: contain;
+        }
+
+        .modal-top {
             display: flex;
             justify-content: space-between;
-            gap: 12px;
-            border-bottom: 1px dashed var(--line);
-            padding: 8px 0;
+            align-items: flex-start;
+            gap: 18px;
+            margin-bottom: 22px;
         }
 
-        .contact-item span:first-child {
+        .modal-intro {
+            display: grid;
+            gap: 8px;
+        }
+
+        .modal-kicker {
+            margin: 0;
+            color: var(--muted);
+            font-size: 0.72rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+        }
+
+        .modal-title {
+            margin: 0;
+            font-size: clamp(2rem, 4vw, 3rem);
+            line-height: 0.98;
+        }
+
+        .modal-subtitle {
+            margin: 0;
+            max-width: 44ch;
             color: var(--muted);
         }
 
-        section {
-            padding: 14px 0 34px;
+        .modal-close {
+            flex-shrink: 0;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            border-radius: 999px;
+            padding: 10px 16px;
+            cursor: pointer;
+            transition: border-color 0.25s ease, transform 0.25s ease;
         }
 
-        .section-title {
-            margin: 0 0 14px;
-            font-size: 1.5rem;
+        .modal-close:hover,
+        .modal-close:focus-visible {
+            transform: translateY(-2px);
+            border-color: rgba(114, 216, 255, 0.48);
+            outline: none;
         }
 
-        .grid {
+        .modal-body {
+            display: grid;
+            gap: 18px;
+        }
+
+        .modal-grid {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 18px;
         }
 
-        .card {
-            background: linear-gradient(180deg, #0f1a30, #0d172b);
+        .wide {
+            grid-column: 1 / -1;
+        }
+
+        .info-card,
+        .project-figure {
             border: 1px solid var(--line);
-            border-radius: 16px;
-            padding: 18px;
-            box-shadow: var(--card-shadow);
-            transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.04);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(76, 201, 240, 0.6);
-            box-shadow: 0 18px 34px rgba(0, 0, 0, 0.45);
+        body[data-theme="light"] .info-card,
+        body[data-theme="light"] .project-figure {
+            background: rgba(255, 255, 255, 0.68);
         }
 
-        .card h3 {
-            margin: 0 0 8px;
-            font-size: 1.04rem;
+        .info-card {
+            padding: 20px;
         }
 
-        .card p {
-            margin: 0;
-            color: var(--muted);
-        }
-
-        ul.clean {
-            margin: 0;
-            padding-left: 18px;
-        }
-
-        ul.clean li {
-            margin-bottom: 8px;
-            color: var(--muted);
-        }
-
-        a.link {
-            color: #7fdaf9;
+        .card-label {
+            display: inline-block;
+            margin-bottom: 12px;
+            padding: 6px 10px;
+            border-radius: 999px;
+            background: var(--accent-soft);
+            color: var(--accent-strong);
+            font-size: 0.72rem;
             font-weight: 700;
-            text-decoration: none;
-            transition: color 0.25s ease;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
         }
 
-        a.link:hover {
-            color: #b5ebff;
-            text-decoration: underline;
+        .info-card h3 {
+            margin: 0 0 10px;
+            font-size: 1.14rem;
         }
 
-        footer {
-            text-align: center;
-            padding: 18px 0 30px;
+        .info-card p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        .info-card ul {
+            margin: 14px 0 0;
+            padding-left: 18px;
+            color: var(--muted);
+        }
+
+        .info-card li + li {
+            margin-top: 8px;
+        }
+
+        .stack-line {
+            margin-top: 12px !important;
+            color: var(--text) !important;
+        }
+
+        .project-figure {
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .project-figure img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .project-figure figcaption {
+            padding: 14px 18px;
             color: var(--muted);
             font-size: 0.92rem;
         }
 
-        .reveal {
-            opacity: 0;
-            transform: translateY(24px) scale(0.98);
-            transition: opacity 0.75s ease, transform 0.75s ease;
-            transition-delay: var(--reveal-delay, 0ms);
+        .skill-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 14px;
         }
 
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0) scale(1);
+        .skill-chip {
+            padding: 10px 12px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.05);
+            font-size: 0.92rem;
         }
 
-        @keyframes fadeUp {
+        body[data-theme="light"] .skill-chip {
+            background: rgba(255, 255, 255, 0.72);
+        }
+
+        .modal-card::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .modal-card::-webkit-scrollbar-thumb {
+            background: rgba(114, 216, 255, 0.3);
+            border-radius: 999px;
+        }
+
+        @keyframes fadeRise {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(18px);
             }
             to {
                 opacity: 1;
@@ -303,209 +797,702 @@
             }
         }
 
-        @keyframes floatGlow {
-            0%,
-            100% {
-                transform: translateY(0) translateX(0);
+        @keyframes rotateRing {
+            from {
+                transform: rotate(0deg);
             }
-            50% {
-                transform: translateY(-15px) translateX(10px);
+            to {
+                transform: rotate(360deg);
             }
         }
 
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation: none !important;
-                transition: none !important;
+        @keyframes rotateRingReverse {
+            from {
+                transform: rotate(360deg);
             }
+            to {
+                transform: rotate(0deg);
+            }
+        }
 
-            html {
-                scroll-behavior: auto;
+        @keyframes floatPlanet {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes spinContinents {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(-34%);
+            }
+        }
+
+        @keyframes spinClouds {
+            from {
+                transform: translateX(-1%);
+            }
+            to {
+                transform: translateX(-35%);
+            }
+        }
+
+        @keyframes driftStars {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(14px);
             }
         }
 
         @media (max-width: 900px) {
             .hero {
+                justify-content: flex-start;
+                padding-top: 22px;
+            }
+
+            .modal-grid {
                 grid-template-columns: 1fr;
             }
 
-            .grid {
+            .orbit-stage {
+                width: min(92vw, 640px);
+                height: min(92vw, 640px);
+            }
+        }
+
+        @media (max-width: 720px) {
+            .site-shell {
+                padding:
+                    max(14px, env(safe-area-inset-top))
+                    14px
+                    calc(22px + env(safe-area-inset-bottom));
+            }
+
+            .topbar {
+                display: grid;
                 grid-template-columns: 1fr;
+                align-items: center;
+                gap: 12px;
+            }
+
+            .brand-block {
+                gap: 2px;
+            }
+
+            .theme-toggle {
+                width: 100%;
+                min-height: 48px;
+            }
+
+            .hero {
+                justify-content: flex-start;
+                gap: 16px;
+                padding: 14px 0 8px;
+            }
+
+            .eyebrow {
+                font-size: 0.68rem;
+                letter-spacing: 0.18em;
+            }
+
+            .hero h1 {
+                max-width: 8.5ch;
+                font-size: clamp(2.35rem, 13vw, 3.7rem);
+                line-height: 0.92;
+            }
+
+            .hero-copy,
+            .orbit-note,
+            .footer-copy {
+                max-width: 31ch;
+                font-size: 0.98rem;
+            }
+
+            .status-pills,
+            .contact-strip {
+                width: min(100%, 440px);
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .pill {
+                width: 100%;
+                min-height: 48px;
+                padding: 12px 14px;
+            }
+
+            .orbit-stage {
+                width: min(100%, 430px);
+                height: 500px;
+                margin-top: 2px;
+            }
+
+            .orbit-stage::before {
+                width: min(78vw, 320px);
+                height: min(78vw, 320px);
+                top: 36px;
+                left: 50%;
+                transform: translateX(-50%);
+                opacity: 0.82;
+            }
+
+            .globe-trigger {
+                width: min(72vw, 290px);
+            }
+
+            .orbit-menu {
+                inset: auto 0 0;
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 10px;
+                align-content: end;
+                padding: 0 4px 6px;
+            }
+
+            .orbit-node {
+                position: static;
+                width: 100%;
+                min-width: 0;
+                min-height: 48px;
+                padding: 11px 12px;
+                font-size: 0.72rem;
+                letter-spacing: 0.08em;
+                transform: translateY(18px) scale(0.94);
+            }
+
+            .orbit-stage.active .orbit-node {
+                transform: translateY(0) scale(1);
+            }
+
+            .modal {
+                padding:
+                    max(10px, env(safe-area-inset-top))
+                    10px
+                    calc(10px + env(safe-area-inset-bottom));
+            }
+
+            .modal-card {
+                max-height: calc(100dvh - 20px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+                border-radius: 24px;
+                padding: 20px 16px 18px;
+            }
+
+            .modal-top {
+                flex-direction: column;
+                gap: 12px;
+                margin-bottom: 16px;
+            }
+
+            .modal-close {
+                width: 100%;
+                min-height: 46px;
+            }
+
+            .modal-title {
+                font-size: clamp(1.7rem, 8vw, 2.3rem);
+            }
+
+            .modal-subtitle,
+            .info-card p,
+            .project-figure figcaption,
+            .info-card ul,
+            .skill-chip {
+                font-size: 0.95rem;
+            }
+
+            .info-card,
+            .project-figure {
+                border-radius: 20px;
+            }
+
+            .info-card {
+                padding: 16px;
+            }
+
+            .project-figure figcaption {
+                padding: 12px 14px;
+            }
+
+            .skill-cloud {
+                gap: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .site-shell {
+                padding:
+                    max(12px, env(safe-area-inset-top))
+                    12px
+                    calc(18px + env(safe-area-inset-bottom));
+            }
+
+            .brand-name {
+                font-size: 1.2rem;
+            }
+
+            .hero {
+                gap: 14px;
+            }
+
+            .hero h1 {
+                font-size: clamp(2.1rem, 12vw, 3.2rem);
+                max-width: 8ch;
+            }
+
+            .hero-copy,
+            .orbit-note,
+            .footer-copy {
+                max-width: 28ch;
+                font-size: 0.94rem;
+            }
+
+            .pill {
+                font-size: 0.92rem;
+            }
+
+            .pill strong {
+                width: 100%;
+                font-size: 0.76rem;
+            }
+
+            .orbit-stage {
+                height: 458px;
+            }
+
+            .orbit-stage::before {
+                width: min(80vw, 292px);
+                height: min(80vw, 292px);
+                top: 28px;
+            }
+
+            .globe-trigger {
+                width: min(74vw, 260px);
+            }
+
+            .globe-caption {
+                bottom: 14px;
+                padding: 7px 11px;
+                font-size: 0.74rem;
+                letter-spacing: 0.05em;
+            }
+
+            .orbit-menu {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+
+            .orbit-node {
+                min-height: 44px;
+                padding: 10px 8px;
+                font-size: 0.68rem;
+                letter-spacing: 0.06em;
+            }
+
+            .modal-card {
+                border-radius: 20px;
+                padding: 18px 14px 16px;
+            }
+
+            .modal-kicker {
+                font-size: 0.65rem;
+                letter-spacing: 0.16em;
+            }
+
+            .card-label {
+                font-size: 0.65rem;
+            }
+
+            .info-card h3 {
+                font-size: 1.02rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+                transition: none !important;
+                scroll-behavior: auto !important;
             }
         }
     </style>
 </head>
-<body>
-    <header>
-        <div class="container nav">
-            <div class="brand">Hlib Knyzhenko</div>
-            <nav class="menu">
-                <a href="#education">Education</a>
-                <a href="#experience">Experience</a>
-                <a href="#activities">Activities</a>
-                <a href="#projects">Projects</a>
-                <a href="#awards">Awards</a>
-                <a href="#skills">Skills</a>
-            </nav>
+<body data-theme="dark">
+    <div class="site-shell">
+        <header class="topbar">
+            <div class="brand-block">
+                <p class="brand-kicker">Portfolio Orbit</p>
+                <p class="brand-name">Hlib Knyzhenko</p>
+            </div>
+            <button class="theme-toggle" id="themeToggle" type="button" aria-live="polite">Light theme</button>
+        </header>
+
+        <main class="hero">
+            <p class="eyebrow">Future Graduate 2026 &middot; Founder of S.P.A.R.K.</p>
+            <h1>Building education-first projects from Ukraine.</h1>
+            <p class="hero-copy">
+                This portfolio now works like a small planetarium: click the globe, unlock the orbit, and open each part of my story through
+                Education, Experience, Activities, Projects, Awards, and Skills.
+            </p>
+
+            <div class="status-pills">
+                <span class="pill"><strong>New</strong> Admitted to Simon's Rock at Bard College</span>
+                <a class="pill" href="https://s-p-a-r-k-academy.vercel.app/" target="_blank" rel="noopener noreferrer"><strong>Live</strong> S.P.A.R.K. Academy</a>
+            </div>
+
+            <p class="orbit-note">Click the Earth to reveal the categories around it.</p>
+
+            <div class="orbit-stage" id="orbitStage">
+                <div class="orbit-ring orbit-ring--one"></div>
+                <div class="orbit-ring orbit-ring--two"></div>
+                <div class="orbit-ring orbit-ring--three"></div>
+
+                <button class="globe-trigger" id="globeTrigger" type="button" aria-expanded="false" aria-controls="orbitMenu">
+                    <span class="globe-shell">
+                        <span class="globe-map"></span>
+                        <span class="globe-clouds"></span>
+                        <span class="globe-grid"></span>
+                        <span class="globe-line globe-line--horizontal"></span>
+                        <span class="globe-line globe-line--vertical"></span>
+                        <span class="globe-caption" id="globeCaption">Open orbit</span>
+                    </span>
+                </button>
+
+                <div class="orbit-menu" id="orbitMenu">
+                    <button class="orbit-node" type="button" data-section="education" style="--angle:-90deg; --delay:40ms;">Education</button>
+                    <button class="orbit-node" type="button" data-section="experience" style="--angle:-28deg; --delay:90ms;">Experience</button>
+                    <button class="orbit-node" type="button" data-section="activities" style="--angle:28deg; --delay:140ms;">Activities</button>
+                    <button class="orbit-node" type="button" data-section="projects" style="--angle:90deg; --delay:190ms;">Projects</button>
+                    <button class="orbit-node" type="button" data-section="awards" style="--angle:152deg; --delay:240ms;">Awards</button>
+                    <button class="orbit-node" type="button" data-section="skills" style="--angle:214deg; --delay:290ms;">Skills</button>
+                </div>
+            </div>
+
+            <div class="contact-strip">
+                <span class="pill"><strong>Location</strong> Ukraine</span>
+                <a class="pill" href="mailto:likeforge1@gmail.com"><strong>Email</strong> likeforge1@gmail.com</a>
+                <span class="pill"><strong>Phone</strong> +380634301525</span>
+                <a class="pill" href="https://github.com/HlibKnyzhenko" target="_blank" rel="noopener noreferrer"><strong>GitHub</strong> HlibKnyzhenko</a>
+            </div>
+
+            <p class="footer-copy">Tap any orbit label to open a polished pop-up with the matching section.</p>
+        </main>
+    </div>
+
+    <div class="modal" id="infoModal" hidden>
+        <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalSubtitle">
+            <div class="modal-top">
+                <div class="modal-intro">
+                    <p class="modal-kicker">Portfolio Section</p>
+                    <h2 class="modal-title" id="modalTitle"></h2>
+                    <p class="modal-subtitle" id="modalSubtitle"></p>
+                </div>
+                <button class="modal-close" id="modalClose" type="button">Close</button>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
         </div>
-    </header>
+    </div>
 
-    <main class="container">
-        <section class="hero">
-            <article class="hero-main">
-                <h1>Hlib Knyzhenko</h1>
-                <p>High School Student from Ukraine building educational projects and custom websites.</p>
-                <div class="tag-row">
-                    <span class="tag">Future Graduate 2026</span>
-                    <a class="tag" href="https://s-p-a-r-k-academy.vercel.app/" target="_blank" rel="noopener noreferrer">Founder of S.P.A.R.K.</a>
-                    <span class="tag">Freelance Web Developer</span>
-                </div>
-            </article>
-            <aside class="hero-side">
-                <div class="contact-item">
-                    <span>Location</span>
-                    <strong>Ukraine</strong>
-                </div>
-                <div class="contact-item">
-                    <span>Email</span>
-                    <strong>likeforge1@gmail.com</strong>
-                </div>
-                <div class="contact-item">
-                    <span>Phone</span>
-                    <strong>+380634301525</strong>
-                </div>
-                <div class="contact-item">
-                    <span>GitHub</span>
-                    <a class="link" href="https://github.com/HlibKnyzhenko" target="_blank" rel="noopener noreferrer">HlibKnyzhenko</a>
-                </div>
-            </aside>
-        </section>
-
-        <section id="education">
-            <h2 class="section-title">Education</h2>
-            <div class="card">
-                <h3>Current School, Ukraine</h3>
-                <p>High School Student</p>
-                <p><strong>Expected Graduation:</strong> 2026</p>
-                <p><strong>Approximate GPA:</strong> C-B Range</p>
-            </div>
-        </section>
-
-        <section id="experience">
-            <h2 class="section-title">Work Experience</h2>
-            <div class="grid">
-                <article class="card">
-                    <h3>Instructor, SUP / Kayaking Club "SUPPORT"</h3>
-                    <p>Taught kayaking and SUP skills, ensured safety, and guided beginners.</p>
-                </article>
-                <article class="card">
-                    <h3>Warehouse Worker</h3>
-                    <p>Assisted with loading, unloading, and organizing shipments.</p>
-                </article>
-                <article class="card">
-                    <h3>Freelance Web Developer</h3>
-                    <p>Created custom websites for clients according to their needs.</p>
-                </article>
-            </div>
-        </section>
-
-        <section id="activities">
-            <h2 class="section-title">Extracurricular Activities & Volunteer Experience</h2>
-            <div class="grid">
-                <article class="card">
-                    <h3>Boxing</h3>
-                    <p>Training for over a year; developing discipline, endurance, and self-control.</p>
-                </article>
-                <article class="card">
-                    <h3>School Volunteer Programs (Supporting Military)</h3>
-                    <p>Organized and sent food, hygiene items, and other supplies in large quantities.</p>
-                </article>
-                <article class="card">
-                    <h3>Club 4 Paws</h3>
-                    <p>Delivered food and wet food for dogs and cats; promoted animal welfare.</p>
-                </article>
-            </div>
-        </section>
-
-        <section id="projects">
-            <h2 class="section-title">Skills & Projects</h2>
-            <div class="grid">
-                <article class="card">
-                    <h3>Leadership and Teamwork</h3>
-                    <p>Strong collaboration, responsibility, and organization skills.</p>
-                </article>
-                <article class="card">
-                    <h3>Educational Telegram Channel</h3>
-                    <p>Shared resources for learning English, US college applications, and visa guidance.</p>
-                </article>
-                <article class="card">
-                    <h3>Founder, S.P.A.R.K. Academy</h3>
-                    <p>Created a free online educational platform for students and teachers.</p>
-                    <ul class="clean">
-                        <li>8 students, 1 teacher</li>
-                        <li>Developed curriculum and platform structure</li>
-                        <li>Launched certificate-based programs to build learner portfolios</li>
-                    </ul>
-                </article>
-                <article class="card">
-                    <h3>Personal Projects (S.P.A.R.K.)</h3>
-                    <p>Developed my own mobile app and desktop application for learning and productivity.</p>
-                </article>
-                <article class="card">
-                    <h3>Owner of S.P.A.R.K. Speaking Club</h3>
-                    <p>Built and managed a speaking club with 7 participants.</p>
-                </article>
-            </div>
-        </section>
-
-        <section id="awards">
-            <h2 class="section-title">Awards & Achievements</h2>
-            <div class="card">
-                <h3>Winner, XXVI All-Ukrainian Online Olympiad "Na Urok" (English Language)</h3>
-                <p><strong>Diploma:</strong> No. O-21584080</p>
-                <p><strong>Date:</strong> 17.11.2025</p>
-                <p>Recognized for outstanding performance in English at a national-level competition.</p>
-            </div>
-        </section>
-
-        <section id="skills">
-            <h2 class="section-title">Programming Languages</h2>
-            <div class="grid">
-                <article class="card">
-                    <h3>Python</h3>
-                    <p>Studying since 2023.</p>
-                </article>
-                <article class="card">
-                    <h3>HTML, CSS, JavaScript</h3>
-                    <p>Studying since 2024-2025.</p>
-                </article>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">Portfolio of Hlib Knyzhenko</div>
-    </footer>
     <script>
-        const revealElements = document.querySelectorAll("section:not(.hero), .card");
-        revealElements.forEach((el, index) => {
-            el.classList.add("reveal");
-            el.style.setProperty("--reveal-delay", `${(index % 4) * 90}ms`);
+        const sectionContent = {
+            education: {
+                title: "Education",
+                subtitle: "My current academic path and the college milestone that now sits in front of me.",
+                html: `
+                    <div class="modal-grid">
+                        <article class="info-card">
+                            <span class="card-label">Current</span>
+                            <h3>High School Student in Ukraine</h3>
+                            <p>Expected graduation in 2026. I am building my path through English, programming, and education-focused projects.</p>
+                        </article>
+                        <article class="info-card">
+                            <span class="card-label">Admission</span>
+                            <h3>Simon's Rock at Bard College</h3>
+                            <p>I was admitted to Simon's Rock at Bard College, and I wanted that achievement to appear on the site in a calm, confident way.</p>
+                        </article>
+                        <article class="info-card wide">
+                            <span class="card-label">Direction</span>
+                            <h3>What I am focused on now</h3>
+                            <p>Strengthening English, expanding my coding skills, and turning educational ideas into real tools and communities through S.P.A.R.K.</p>
+                        </article>
+                    </div>
+                `
+            },
+            experience: {
+                title: "Experience",
+                subtitle: "Hands-on work that shaped responsibility, teaching, and delivery.",
+                html: `
+                    <div class="modal-grid">
+                        <article class="info-card">
+                            <span class="card-label">Teaching</span>
+                            <h3>Instructor, SUP / Kayaking Club "SUPPORT"</h3>
+                            <p>Taught kayaking and SUP skills, guided beginners, and helped maintain a safe environment on the water.</p>
+                        </article>
+                        <article class="info-card">
+                            <span class="card-label">Operations</span>
+                            <h3>Warehouse Worker</h3>
+                            <p>Helped with loading, unloading, and organizing shipments. It taught discipline and reliability under pressure.</p>
+                        </article>
+                        <article class="info-card wide">
+                            <span class="card-label">Client Work</span>
+                            <h3>Freelance Web Developer</h3>
+                            <p>Created custom websites for clients based on their goals, visual preferences, and practical needs.</p>
+                        </article>
+                    </div>
+                `
+            },
+            activities: {
+                title: "Activities",
+                subtitle: "Communities, volunteering, and routines that built character outside the classroom.",
+                html: `
+                    <div class="modal-grid">
+                        <article class="info-card">
+                            <span class="card-label">Sport</span>
+                            <h3>Boxing</h3>
+                            <p>Training for more than a year, building endurance, self-control, and consistency.</p>
+                        </article>
+                        <article class="info-card">
+                            <span class="card-label">Volunteer</span>
+                            <h3>School Support Programs</h3>
+                            <p>Helped organize food, hygiene items, and other supplies for Ukrainian military support initiatives.</p>
+                        </article>
+                        <article class="info-card wide">
+                            <span class="card-label">Animal Welfare</span>
+                            <h3>Club 4 Paws</h3>
+                            <p>Delivered food and supplies for dogs and cats and supported local animal welfare efforts.</p>
+                        </article>
+                    </div>
+                `
+            },
+            projects: {
+                title: "Projects",
+                subtitle: "The products, communities, and platforms I am actively building.",
+                html: `
+                    <div class="modal-grid">
+                        <article class="info-card wide">
+                            <span class="card-label">Founder Project</span>
+                            <h3>S.P.A.R.K. Academy</h3>
+                            <p>A free educational platform for students and teachers with lessons, certificates, and a growing learning community.</p>
+                            <p class="stack-line"><strong>Tech stack:</strong> HTML, CSS, JavaScript, responsive UI, and deployment on Vercel.</p>
+                            <ul>
+                                <li>Built the platform structure and public-facing experience.</li>
+                                <li>Worked with 8 students and 1 teacher.</li>
+                                <li>Created certificate-based programs to support student portfolios.</li>
+                            </ul>
+                        </article>
+                        <figure class="project-figure wide">
+                            <img src="photo-of-site.jpg" alt="S.P.A.R.K. Academy homepage screenshot" />
+                            <figcaption>S.P.A.R.K. Academy homepage preview added directly into the portfolio.</figcaption>
+                        </figure>
+                        <article class="info-card">
+                            <span class="card-label">Mobile App</span>
+                            <h3>Learning and Productivity App</h3>
+                            <p>A mobile companion project built around educational routines, lightweight productivity, and student-friendly flows.</p>
+                            <p class="stack-line"><strong>Tech stack:</strong> Python and Flet.</p>
+                        </article>
+                        <article class="info-card">
+                            <span class="card-label">Desktop App</span>
+                            <h3>S.P.A.R.K. Desktop Tool</h3>
+                            <p>A desktop workspace for learning and productivity connected to the broader S.P.A.R.K. ecosystem.</p>
+                            <p class="stack-line"><strong>Tech stack:</strong> Python and Flet.</p>
+                        </article>
+                        <article class="info-card">
+                            <span class="card-label">Community</span>
+                            <h3>S.P.A.R.K. Speaking Club</h3>
+                            <p>Built and managed a speaking club with 7 participants to create a safe space for English conversation and confidence.</p>
+                        </article>
+                        <article class="info-card">
+                            <span class="card-label">Content</span>
+                            <h3>Educational Telegram Channel</h3>
+                            <p>Shared English-learning resources plus information about U.S. college applications and visa guidance.</p>
+                        </article>
+                    </div>
+                `
+            },
+            awards: {
+                title: "Awards",
+                subtitle: "Recognition that reflects the work already turning into results.",
+                html: `
+                    <div class="modal-grid">
+                        <article class="info-card wide">
+                            <span class="card-label">English Achievement</span>
+                            <h3>Winner, XXVI All-Ukrainian Online Olympiad "Na Urok"</h3>
+                            <p>Recognized for strong performance in English at a national-level online competition.</p>
+                            <p class="stack-line"><strong>Diploma:</strong> No. O-21584080</p>
+                            <p class="stack-line"><strong>Date:</strong> November 17, 2025</p>
+                        </article>
+                    </div>
+                `
+            },
+            skills: {
+                title: "Skills",
+                subtitle: "A mix of code, product thinking, communication, and leadership.",
+                html: `
+                    <div class="modal-grid">
+                        <article class="info-card">
+                            <span class="card-label">Technical</span>
+                            <h3>Programming</h3>
+                            <p>Python since 2023. HTML, CSS, and JavaScript since 2024-2025, with a growing interest in building polished educational products.</p>
+                            <div class="skill-cloud">
+                                <span class="skill-chip">Python</span>
+                                <span class="skill-chip">Flet</span>
+                                <span class="skill-chip">HTML</span>
+                                <span class="skill-chip">CSS</span>
+                                <span class="skill-chip">JavaScript</span>
+                                <span class="skill-chip">Responsive UI</span>
+                            </div>
+                        </article>
+                        <article class="info-card">
+                            <span class="card-label">Human</span>
+                            <h3>Leadership and Communication</h3>
+                            <p>I enjoy building communities, explaining ideas clearly, organizing projects, and helping people feel included.</p>
+                            <div class="skill-cloud">
+                                <span class="skill-chip">Leadership</span>
+                                <span class="skill-chip">Teamwork</span>
+                                <span class="skill-chip">Teaching</span>
+                                <span class="skill-chip">Public Speaking</span>
+                                <span class="skill-chip">Organization</span>
+                                <span class="skill-chip">Client Communication</span>
+                            </div>
+                        </article>
+                        <article class="info-card wide">
+                            <span class="card-label">Strengths</span>
+                            <h3>What ties everything together</h3>
+                            <p>Curiosity, initiative, and the habit of turning an idea into something visible, usable, and helpful for other people.</p>
+                        </article>
+                    </div>
+                `
+            }
+        };
+
+        const themeToggle = document.getElementById("themeToggle");
+        const globeTrigger = document.getElementById("globeTrigger");
+        const globeCaption = document.getElementById("globeCaption");
+        const orbitStage = document.getElementById("orbitStage");
+        const orbitNodes = document.querySelectorAll(".orbit-node");
+        const modal = document.getElementById("infoModal");
+        const modalTitle = document.getElementById("modalTitle");
+        const modalSubtitle = document.getElementById("modalSubtitle");
+        const modalBody = document.getElementById("modalBody");
+        const modalClose = document.getElementById("modalClose");
+
+        let lastFocusedElement = null;
+        let closeTimer = null;
+
+        function getSavedTheme() {
+            try {
+                return localStorage.getItem("portfolio-theme");
+            } catch (error) {
+                return null;
+            }
+        }
+
+        function saveTheme(theme) {
+            try {
+                localStorage.setItem("portfolio-theme", theme);
+            } catch (error) {
+                return;
+            }
+        }
+
+        function syncThemeButton() {
+            const isLight = document.body.dataset.theme === "light";
+            themeToggle.textContent = isLight ? "Dark theme" : "Light theme";
+            themeToggle.setAttribute("aria-label", isLight ? "Switch to dark theme" : "Switch to light theme");
+        }
+
+        function applyInitialTheme() {
+            const savedTheme = getSavedTheme();
+            const shouldUseLight = savedTheme ? savedTheme === "light" : window.matchMedia("(prefers-color-scheme: light)").matches;
+            document.body.dataset.theme = shouldUseLight ? "light" : "dark";
+            syncThemeButton();
+        }
+
+        function syncOrbitState() {
+            const isActive = orbitStage.classList.contains("active");
+            globeTrigger.setAttribute("aria-expanded", String(isActive));
+            globeCaption.textContent = isActive ? "Hide orbit" : "Open orbit";
+        }
+
+        function openModal(sectionKey) {
+            const section = sectionContent[sectionKey];
+            if (!section) {
+                return;
+            }
+
+            if (closeTimer) {
+                window.clearTimeout(closeTimer);
+                closeTimer = null;
+            }
+
+            lastFocusedElement = document.activeElement;
+            modalTitle.textContent = section.title;
+            modalSubtitle.textContent = section.subtitle;
+            modalBody.innerHTML = section.html;
+            modal.hidden = false;
+            document.body.classList.add("modal-open");
+            requestAnimationFrame(() => {
+                modal.classList.add("is-visible");
+            });
+            modalClose.focus();
+        }
+
+        function closeModal() {
+            modal.classList.remove("is-visible");
+            document.body.classList.remove("modal-open");
+            closeTimer = window.setTimeout(() => {
+                modal.hidden = true;
+                closeTimer = null;
+                if (lastFocusedElement instanceof HTMLElement) {
+                    lastFocusedElement.focus();
+                }
+            }, 240);
+        }
+
+        applyInitialTheme();
+        syncOrbitState();
+
+        themeToggle.addEventListener("click", () => {
+            const nextTheme = document.body.dataset.theme === "light" ? "dark" : "light";
+            document.body.dataset.theme = nextTheme;
+            saveTheme(nextTheme);
+            syncThemeButton();
         });
 
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add("visible");
-                        observer.unobserve(entry.target);
-                    }
-                });
-            },
-            { threshold: 0.16 }
-        );
+        globeTrigger.addEventListener("click", () => {
+            orbitStage.classList.toggle("active");
+            syncOrbitState();
+        });
 
-        revealElements.forEach((el) => observer.observe(el));
+        orbitNodes.forEach((node) => {
+            node.addEventListener("click", () => {
+                openModal(node.dataset.section);
+            });
+        });
+
+        modalClose.addEventListener("click", closeModal);
+
+        modal.addEventListener("click", (event) => {
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && !modal.hidden) {
+                closeModal();
+            }
+        });
     </script>
 </body>
 </html>
