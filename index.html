@@ -869,6 +869,15 @@
         }
 
         @media (max-width: 720px) {
+            body::before {
+                animation: none;
+                opacity: 0.14;
+            }
+
+            body::after {
+                display: none;
+            }
+
             .site-shell {
                 padding:
                     max(14px, env(safe-area-inset-top))
@@ -890,6 +899,19 @@
             .theme-toggle {
                 width: 100%;
                 min-height: 48px;
+                backdrop-filter: none;
+                box-shadow: none;
+            }
+
+            .eyebrow,
+            .hero h1,
+            .hero-copy,
+            .status-pills,
+            .contact-strip,
+            .orbit-note,
+            .footer-copy,
+            .orbit-stage {
+                animation: none;
             }
 
             .hero {
@@ -928,49 +950,98 @@
                 width: 100%;
                 min-height: 48px;
                 padding: 12px 14px;
+                backdrop-filter: none;
+                box-shadow: none;
             }
 
             .orbit-stage {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                gap: 12px;
                 width: min(100%, 430px);
-                height: 500px;
+                height: auto;
+                min-height: 0;
                 margin-top: 2px;
+                padding-top: 8px;
             }
 
             .orbit-stage::before {
                 width: min(78vw, 320px);
                 height: min(78vw, 320px);
-                top: 36px;
+                top: 40px;
                 left: 50%;
                 transform: translateX(-50%);
-                opacity: 0.82;
+                filter: none;
+                opacity: 0.38;
+            }
+
+            .orbit-ring {
+                display: none;
             }
 
             .globe-trigger {
                 width: min(72vw, 290px);
+                flex-shrink: 0;
+            }
+
+            .globe-shell {
+                box-shadow:
+                    inset -20px -16px 36px rgba(0, 0, 0, 0.42),
+                    inset 10px 8px 18px rgba(151, 228, 255, 0.18),
+                    0 0 36px rgba(24, 184, 255, 0.14),
+                    0 12px 28px rgba(0, 0, 0, 0.22);
+                animation: none;
+            }
+
+            .globe-map {
+                filter: none;
+                animation-duration: 28s;
+            }
+
+            .globe-clouds {
+                display: none;
+            }
+
+            .globe-caption {
+                top: 14px;
+                bottom: auto;
+                padding: 7px 11px;
+                font-size: 0.72rem;
+                letter-spacing: 0.05em;
+                backdrop-filter: none;
             }
 
             .orbit-menu {
-                inset: auto 0 0;
+                position: relative;
+                inset: auto;
+                width: 100%;
                 display: grid;
                 grid-template-columns: repeat(2, minmax(0, 1fr));
                 gap: 10px;
-                align-content: end;
-                padding: 0 4px 6px;
+                align-content: stretch;
+                padding: 0;
+                margin-top: 6px;
             }
 
             .orbit-node {
-                position: static;
+                position: relative;
+                top: auto;
+                left: auto;
                 width: 100%;
                 min-width: 0;
                 min-height: 48px;
                 padding: 11px 12px;
                 font-size: 0.72rem;
                 letter-spacing: 0.08em;
-                transform: translateY(18px) scale(0.94);
+                background: rgba(10, 14, 22, 0.92);
+                box-shadow: none;
+                transform: translateY(10px);
             }
 
             .orbit-stage.active .orbit-node {
-                transform: translateY(0) scale(1);
+                transform: translateY(0);
             }
 
             .modal {
@@ -978,6 +1049,7 @@
                     max(10px, env(safe-area-inset-top))
                     10px
                     calc(10px + env(safe-area-inset-bottom));
+                backdrop-filter: none;
             }
 
             .modal-card {
@@ -1065,7 +1137,7 @@
             }
 
             .orbit-stage {
-                height: 458px;
+                gap: 10px;
             }
 
             .orbit-stage::before {
@@ -1079,21 +1151,19 @@
             }
 
             .globe-caption {
-                bottom: 14px;
-                padding: 7px 11px;
-                font-size: 0.74rem;
-                letter-spacing: 0.05em;
+                top: 12px;
+                font-size: 0.7rem;
             }
 
             .orbit-menu {
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: 1fr;
                 gap: 8px;
             }
 
             .orbit-node {
-                min-height: 44px;
-                padding: 10px 8px;
-                font-size: 0.68rem;
+                min-height: 50px;
+                padding: 12px 10px;
+                font-size: 0.7rem;
                 letter-spacing: 0.06em;
             }
 
